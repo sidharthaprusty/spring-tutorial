@@ -1,10 +1,15 @@
 package com.sidharth.springdemo;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope()
 public class TennisCoach implements Coach {
 
 	@Autowired
@@ -19,6 +24,20 @@ public class TennisCoach implements Coach {
 	//define a no-arg constructor
 	public TennisCoach() {
 		System.out.println("Inside the no-arg constructor of TennisCoach");
+	}
+	
+	// Define Init method
+	@PostConstruct
+	public void doMyStartupStuff() {
+		
+		System.out.println("TennisCoach: Inside doMyStartupStuff()");
+	}
+	
+	// Define Destroy method
+	@PreDestroy
+	public void doMyCleanupStuff() {
+		
+		System.out.println("TennisCoach: Inside doMyCleanupStuff()");
 	}
 	
 	// Define setter method for injection
